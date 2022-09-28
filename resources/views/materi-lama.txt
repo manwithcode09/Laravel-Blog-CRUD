@@ -1,0 +1,108 @@
+
+MEMBUAT SEEDER SECARA MANUAL
+
+User::create([
+
+            'name'=>'T.Imam Suranda',
+            'email' => 'imamsuranda@yahoo.com',
+            'password' => bcrypt('imam')
+
+        ]);
+
+
+        User::create([
+
+            'name'=>'Saeful Anwar',
+            'email' => 'saepul@gmail.com',
+            'password' => bcrypt('saipul')
+
+        ]);
+    
+    
+        Category::create([
+
+            'name' => 'Web Programming',
+            'slug' => 'web-programming'
+        ]);
+
+        Category::create([
+
+            'name' => 'Web Design',
+            'slug' => 'web-design'
+        ]);
+
+
+        Post::create([
+
+            'title' => 'Belajar PHP Dasar',
+            'slug' => 'belajar-php-dasar',
+            'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus dignissimos ex distinctio.',
+            'body' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus dignissimos ex distinctio, deleniti cumque accusamus beatae soluta eaque modi consequatur, ad quasi accusantium quidem. Nulla eos quia doloremque cumque saepe omnis suscipit perspiciatis quos nemo id.</p> <p>Placeat ut quos omnis, pariatur aliquam at nostrum sequi animi neque, vitae impedit velit molestiae recusandae eos delectus. Provident aspernatur ducimus commodi perferendis deserunt, alias, delectus natus optio assumenda laboriosam dolore? Ex aspernatur quidem, dolor, qui quibusdam expedita similique sed accusamus laboriosam quia natus. Magnam distinctio debitis provident molestias hic inventore, animi facilis saepe nostrum totam dicta sapiente commodi maxime ex cum qui in.</p>',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
+
+        Post::create([
+
+            'title' => 'Belajar Corel Draw',
+            'slug' => 'belajar-corel-draw',
+            'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus dignissimos ex distinctio.',
+            'body' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus dignissimos ex distinctio, deleniti cumque accusamus beatae soluta eaque modi consequatur, ad quasi accusantium quidem. Nulla eos quia doloremque cumque saepe omnis suscipit perspiciatis quos nemo id.</p> <p>Placeat ut quos omnis, pariatur aliquam at nostrum sequi animi neque, vitae impedit velit molestiae recusandae eos delectus. Provident aspernatur ducimus commodi perferendis deserunt, alias, delectus natus optio assumenda laboriosam dolore? Ex aspernatur quidem, dolor, qui quibusdam expedita similique sed accusamus laboriosam quia natus. Magnam distinctio debitis provident molestias hic inventore, animi facilis saepe nostrum totam dicta sapiente commodi maxime ex cum qui in.</p>',
+            'category_id' => 2,
+            'user_id' => 2
+        ]);
+
+
+
+
+        MEMBUAT MODEL POST SECARA MANUAL
+
+        <?php
+
+namespace App\Models;
+
+class Post
+{
+    private static $blog_posts = [
+
+        [
+            "title" => "Judul Blog Pertama",
+            "slug" => "judul-blog-pertama",
+            "author" => "T.Imam Suranda",
+            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem sed aliquam sint vitae aliquid laudantium fugit commodi ipsum, dolorem rem unde labore explicabo quas reiciendis doloribus libero vel nobis est accusantium ratione. Quis non maiores nisi possimus ipsa ex fugiat autem quasi neque iusto accusantium sunt necessitatibus illum cumque aspernatur laudantium reiciendis similique inventore minus, perferendis perspiciatis. Eum modi quo nesciunt consequuntur nulla rem, vel velit, cupiditate doloribus beatae optio at earum, officia repudiandae. Tempora corporis error accusamus odio voluptas."                    
+        ],
+    
+        [
+            "title" => "Judul Blog Kedua",
+            "slug" => "judul-blog-kedua",
+            "author" => "Agus Prastya",
+            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate facere officia quam in ex nobis numquam! Quo deserunt placeat odio. Ratione consequuntur, debitis aliquam magni porro, ad optio mollitia cumque voluptatum vero, libero delectus hic. Aspernatur hic neque sequi dicta. Possimus rem corporis nam nisi, deleniti sunt. Impedit, perspiciatis. Dolor incidunt, necessitatibus perspiciatis fugit hic beatae tempore culpa aliquid, ullam accusamus quos at, sequi cupiditate. Culpa nulla maiores rem, eaque fugiat nobis atque quae pariatur eius enim beatae perferendis qui veritatis placeat! Provident consequatur ea laudantium dolores autem ratione, sunt aliquid a ipsa atque aut tenetur magni expedita id minus."                    
+        ],
+    
+    
+    ];
+
+
+    public static function all() {
+
+        //gunakan keyword self:: untuk property static
+        //collect untuk membungkus array menjadi collection
+        return collect(self::$blog_posts);
+    }
+
+    
+
+    public static function find($slug) {
+        //gunakan keyword static:: untuk method static
+        $posts = static::all();
+        //menampilkan array pertama berdasarkan kondisi
+        return $posts->firstWhere('slug', $slug);
+
+    }
+
+
+
+
+
+}
